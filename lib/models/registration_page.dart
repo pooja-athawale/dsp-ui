@@ -1,4 +1,5 @@
 import 'package:dsp_ui/models/new_login_page.dart';
+import 'package:dsp_ui/models/new_profile_page.dart';
 import 'package:dsp_ui/models/privacy_policy.dart';
 import 'package:dsp_ui/models/profile_page.dart';
 import 'package:flutter/material.dart';
@@ -148,8 +149,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context)=>ProfilePage(userId: ''),
-                    ),);
+                      builder: (context)=>NewProfilePage(
+                      userId: widget.userId,
+                      firstName: _firstNameController.text,
+                      lastName: _lastNameController.text,
+                    ),));
 
                 },
                 key: Key('keyContinue'),

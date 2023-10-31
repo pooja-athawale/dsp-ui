@@ -1,10 +1,11 @@
 import 'package:dsp_ui/models/privacy_policy.dart';
-import 'package:dsp_ui/models/profile_page.dart';
 import 'package:dsp_ui/models/registration_page.dart';
 import 'package:dsp_ui/models/set_password_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
+
+import 'new_profile_page.dart';
 
 class NewLoginPage extends StatefulWidget {
   final String userId; // Add this line
@@ -27,6 +28,9 @@ class _NewLoginPageState extends State<NewLoginPage> {
 
   final String _emailRegex = r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$';
   final String _passwordRegex = r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$';
+  final TextEditingController _firstNameController = TextEditingController(); // Add this line
+  final TextEditingController _lastNameController = TextEditingController(); // Add this line
+
 
   @override
   Widget build(BuildContext context) {
@@ -111,8 +115,11 @@ class _NewLoginPageState extends State<NewLoginPage> {
                   onPressed: () {
                     Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (context)=>ProfilePage(userId: ''),
-                        ),);
+                          builder: (context)=>NewProfilePage(
+                            userId: widget.userId,
+                            firstName: _firstNameController.text,
+                            lastName: _lastNameController.text,
+                          ),));
                         // Navigate to the 'Profile' screen
                   },
                   key: Key('keySignIn'),
@@ -151,8 +158,14 @@ class _NewLoginPageState extends State<NewLoginPage> {
 
                         // Navigate to the LoginPage upon successful authentication
                         Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => ProfilePage(userId: '',), // Replace 'LoginPage' with your actual page
+                            MaterialPageRoute(
+                              builder: (context)=>NewProfilePage(
+                                userId: widget.userId,
+                                firstName: _firstNameController.text,
+                                lastName: _lastNameController.text,
+                              ),
+                            // Replace 'LoginPage' with your actual page
+
                           ),
                         );
                       } else {

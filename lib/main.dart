@@ -2,6 +2,8 @@
 import 'package:dsp_ui/models/new_login_page.dart';
 import 'package:flutter/material.dart';
 
+import 'models/new_profile_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: NewLoginPage(userId: '',), // Provide a default value
-      //home: RegistrationPage(userId: '',), // Provide a default value
+     // home: NewProfilePage(userId: '',), // Provide a default value
     );
   }
 }
